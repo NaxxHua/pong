@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://bqv6ndkceeei3"]
+
+[ext_resource type="Script" path="res://LeftPaddle.gd" id="1_0osru"]
+[ext_resource type="Script" path="res://Ball.gd" id="1_2v2tm"]
+[ext_resource type="Script" path="res://RightPaddle.gd" id="1_xrnjh"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_72uta"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g76t8"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_kieuh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_osa08"]
+size = Vector2(1091, 20)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_nvevj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvpmv"]
+size = Vector2(20, 136)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_n87x4"]
+
+[node name="Pong Arena" type="Node2D"]
+
+[node name="Ball" type="RigidBody2D" parent="."]
+position = Vector2(382, 221)
+gravity_scale = 0.0
+lock_rotation = true
+freeze = true
+script = ExtResource("1_2v2tm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+position = Vector2(-1.03712e-05, -1.16825e-05)
+scale = Vector2(18, 18)
+texture = SubResource("CanvasTexture_72uta")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_g76t8")
+
+[node name="WallTop" type="StaticBody2D" parent="."]
+position = Vector2(44, 91)
+
+[node name="Sprite2D" type="Sprite2D" parent="WallTop"]
+position = Vector2(535.5, 4.76837e-07)
+scale = Vector2(1091, 20)
+texture = SubResource("CanvasTexture_kieuh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallTop"]
+position = Vector2(535.5, 0)
+shape = SubResource("RectangleShape2D_osa08")
+
+[node name="WallBottom" type="StaticBody2D" parent="."]
+position = Vector2(44, 612)
+
+[node name="Sprite2D" type="Sprite2D" parent="WallBottom"]
+position = Vector2(535.5, 4.76837e-07)
+scale = Vector2(1091, 20)
+texture = SubResource("CanvasTexture_kieuh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallBottom"]
+position = Vector2(535.5, 0)
+shape = SubResource("RectangleShape2D_osa08")
+
+[node name="LeftPaddle" type="StaticBody2D" parent="."]
+position = Vector2(26, 344)
+script = ExtResource("1_0osru")
+
+[node name="Sprite2D" type="Sprite2D" parent="LeftPaddle"]
+rotation = -3.14159
+scale = Vector2(18.8585, 134.31)
+texture = SubResource("CanvasTexture_nvevj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftPaddle"]
+shape = SubResource("RectangleShape2D_rvpmv")
+
+[node name="RightPaddle" type="StaticBody2D" parent="."]
+position = Vector2(1123, 344)
+script = ExtResource("1_xrnjh")
+
+[node name="Sprite2D" type="Sprite2D" parent="RightPaddle"]
+rotation = -3.14159
+scale = Vector2(18.8853, 135.592)
+texture = SubResource("CanvasTexture_n87x4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightPaddle"]
+shape = SubResource("RectangleShape2D_rvpmv")

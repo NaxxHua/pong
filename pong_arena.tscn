@@ -122,3 +122,12 @@ offset_bottom = 389.0
 label_settings = SubResource("LabelSettings_jswi0")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="."]
+offset_left = 488.0
+offset_top = 456.0
+offset_right = 663.0
+offset_bottom = 551.0
+theme_override_fonts/font = ExtResource("4_4eji2")
+theme_override_font_sizes/font_size = 32
+text = "再玩一次"

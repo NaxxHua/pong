@@ -16,7 +16,7 @@ func _ready():
 	reset_ball()
 
 func _physics_process(delta):
-	if get_tree().root.get_node("Pong Arena").game_over: 
+	if get_tree().root.get_node("Pong Arena").game_over:
 		return
 	
 	# 移动小球并处理碰撞
@@ -45,13 +45,13 @@ func _physics_process(delta):
 	if global_position.x < 0:
 		emit_signal("score_right")
 		reset_ball()
-	elif global_position.x > get_viewport_rect().size.x:
+	elif global_position.x > get_viewport().get_visible_rect().size.x:
 		emit_signal("score_left")
 		reset_ball()
 
 func reset_ball():
 	# 重置球的位置和速度
-	global_position = get_viewport_rect().size / 2
+	global_position = get_viewport().get_visible_rect().size / 2
 
 	# 增加速度
 	speed += SPEED_INCREMENT

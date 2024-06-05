@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bqv6ndkceeei3"]
+[gd_scene load_steps=15 format=3 uid="uid://bqv6ndkceeei3"]
 
 [ext_resource type="Script" path="res://LeftPaddle.gd" id="1_0osru"]
 [ext_resource type="Script" path="res://Ball.gd" id="1_2v2tm"]
+[ext_resource type="Script" path="res://pong_arena.gd" id="1_qb112"]
 [ext_resource type="Script" path="res://RightPaddle.gd" id="1_xrnjh"]
+[ext_resource type="FontFile" uid="uid://d07co36a0kpv8" path="res://fonts/ark-pixel-12px-proportional-zh_cn.ttf" id="4_4eji2"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_72uta"]
 
@@ -15,12 +17,20 @@ size = Vector2(1091, 20)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_nvevj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvpmv"]
-size = Vector2(20, 136)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r5xpw"]
+height = 136.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_n87x4"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ptwsl"]
+height = 138.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_x5fl2"]
+font = ExtResource("4_4eji2")
+font_size = 32
+
 [node name="Pong Arena" type="Node2D"]
+script = ExtResource("1_qb112")
 
 [node name="Ball" type="CharacterBody2D" parent="."]
 position = Vector2(382, 221)
@@ -68,7 +78,7 @@ scale = Vector2(18.8585, 134.31)
 texture = SubResource("CanvasTexture_nvevj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftPaddle"]
-shape = SubResource("RectangleShape2D_rvpmv")
+shape = SubResource("CapsuleShape2D_r5xpw")
 
 [node name="RightPaddle" type="StaticBody2D" parent="."]
 position = Vector2(1123, 344)
@@ -80,4 +90,22 @@ scale = Vector2(18.8853, 135.592)
 texture = SubResource("CanvasTexture_n87x4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightPaddle"]
-shape = SubResource("RectangleShape2D_rvpmv")
+shape = SubResource("CapsuleShape2D_ptwsl")
+
+[node name="LeftScoreLabel" type="Label" parent="."]
+offset_left = 39.0
+offset_top = 23.0
+offset_right = 117.0
+offset_bottom = 72.0
+text = "0"
+label_settings = SubResource("LabelSettings_x5fl2")
+horizontal_alignment = 1
+
+[node name="RightScoreLabel" type="Label" parent="."]
+offset_left = 1050.0
+offset_top = 23.0
+offset_right = 1128.0
+offset_bottom = 72.0
+text = "0"
+label_settings = SubResource("LabelSettings_x5fl2")
+horizontal_alignment = 1

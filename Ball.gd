@@ -16,6 +16,9 @@ func _ready():
 	reset_ball()
 
 func _physics_process(delta):
+	if get_tree().root.get_node("Pong Arena").game_over: 
+		return
+	
 	# 移动小球并处理碰撞
 	var collision = move_and_collide(velocity * delta)
 

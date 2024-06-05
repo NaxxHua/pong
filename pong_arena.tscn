@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bqv6ndkceeei3"]
+[gd_scene load_steps=16 format=3 uid="uid://bqv6ndkceeei3"]
 
 [ext_resource type="Script" path="res://LeftPaddle.gd" id="1_0osru"]
 [ext_resource type="Script" path="res://Ball.gd" id="1_2v2tm"]
@@ -28,6 +28,10 @@ height = 138.0
 [sub_resource type="LabelSettings" id="LabelSettings_x5fl2"]
 font = ExtResource("4_4eji2")
 font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_jswi0"]
+font = ExtResource("4_4eji2")
+font_size = 64
 
 [node name="Pong Arena" type="Node2D"]
 script = ExtResource("1_qb112")
@@ -109,3 +113,12 @@ offset_bottom = 72.0
 text = "0"
 label_settings = SubResource("LabelSettings_x5fl2")
 horizontal_alignment = 1
+
+[node name="VictoryLabel" type="Label" parent="."]
+offset_left = 200.0
+offset_top = 288.0
+offset_right = 960.0
+offset_bottom = 389.0
+label_settings = SubResource("LabelSettings_jswi0")
+horizontal_alignment = 1
+vertical_alignment = 1

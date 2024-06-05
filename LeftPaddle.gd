@@ -13,6 +13,10 @@ func _ready():
 	ball = get_node("../Ball")
 
 func _process(delta):
+	# 确保球存在
+	if not ball:
+		return
+
 	# 检查球是否在屏幕内
 	if ball.global_position.x < 0 or ball.global_position.x > get_viewport_rect().size.x:
 		return  # 球飞出屏幕，停止更新球拍位置

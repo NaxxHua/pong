@@ -1,7 +1,10 @@
 extends CharacterBody2D
 
-const SPEED = 700.0
+const INITIAL_SPEED = 300.0
+const SPEED_INCREMENT = 50.0
+const MIN_X_SPEED = 200.0  # 设置最小横向速度
 
+var speed = INITIAL_SPEED
 var initial_velocity = Vector2()
 var last_paddle_velocity = Vector2()
 
@@ -10,17 +13,7 @@ signal score_left
 signal score_right
 
 func _ready():
-	# 随机选择初始方向
-	var random_angle = randf_range(-PI / 4, PI / 4)
-	var initial_direction = Vector2(cos(random_angle), sin(random_angle)).normalized()
-	
-	# 随机决定向左或向右
-	if randi() % 2 == 0:
-		initial_direction.x *= -1
-	
-	# 设置初始速度
-	initial_velocity = initial_direction * SPEED
-	velocity = initial_velocity
+	reset_ball()
 
 func _physics_process(delta):
 	# 移动小球并处理碰撞
@@ -38,7 +31,12 @@ func _physics_process(delta):
 			velocity = velocity.bounce(collision.get_normal())
 		
 		# 确保速度保持恒定
-		velocity = velocity.normalized() * SPEED
+		velocity = velocity.normalized() * speed
+		
+		# 限制最小横向速度
+		if abs(velocity.x) < MIN_X_SPEED:
+			velocity.x = sign(velocity.x) * MIN_X_SPEED
+			velocity = velocity.normalized() * speed
 	
 	# 检查是否得分
 	if global_position.x < 0:
@@ -51,4 +49,18 @@ func _physics_process(delta):
 func reset_ball():
 	# 重置球的位置和速度
 	global_position = get_viewport_rect().size / 2
-	_ready()
+
+	# 增加速度
+	speed += SPEED_INCREMENT
+
+	# 随机选择初始方向
+	var random_angle = randf_range(-PI / 4, PI / 4)
+	var initial_direction = Vector2(cos(random_angle), sin(random_angle)).normalized()
+	
+	# 随机决定向左或向右
+	if randi() % 2 == 0:
+		initial_direction.x *= -1
+	
+	# 设置初始速度
+	initial_velocity = initial_direction * speed
+	velocity = initial_velocity

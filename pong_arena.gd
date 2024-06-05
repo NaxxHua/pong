@@ -42,9 +42,9 @@ func _update_score_labels():
 
 func _check_victory():
 	if left_score >= WINNING_SCORE:
-		_show_victory_message("玩家胜利")
+		_show_victory_message("电脑胜利！你太逊了！！")
 	elif right_score >= WINNING_SCORE:
-		_show_victory_message("电脑胜利")
+		_show_victory_message("玩家胜利！太酷啦！")
 
 func _show_victory_message(message):
 	victory_label.text = message
